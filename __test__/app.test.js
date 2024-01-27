@@ -1,4 +1,4 @@
-const {Pokemon} = require('../app')
+const {Pokemon,Fire,Grass,Water,Normal} = require('../app')
 
 describe('Pokemon', () => {
     test('Should return name property when instance is created', () => {
@@ -38,4 +38,42 @@ describe('Pokemon', () => {
         result2.takeDamage(110);
         expect(result2.hasFainted()).toBe(true);
     })
+});
+
+describe('Fire class', () => {
+    test('Name should return charmander', () => {
+        const result = new Fire('charmander',40);
+        expect(result.name).toBe('charmander')
+    });
+    test('isStrongAgainst should return grass', () => {
+        const result = new Fire('charmander',40);;
+        expect(result.isEffectiveAgainst()).toBe('grass')
+        console.log(result)
+    });
+});
+describe('Grass class', () => {
+    test('Name should return charmander', () => {
+        const result = new Grass('bulbasaur',40);
+        expect(result.name).toBe('bulbasaur')
+    });
+    test('isStrongAgainst should return water', () => {
+        const result = new Grass('bulbasaur',40);;
+        expect(result.isEffectiveAgainst()).toBe('water')
+    });
+});
+describe('Water class', () => {
+    test('Name should return charmander', () => {
+        const result = new Water('squirtle',40);
+        expect(result.name).toBe('squirtle');
+    });
+    test('isStrongAgainst should return fire', () => {
+        const result = new Water('squirtle',40);
+        expect(result.isEffectiveAgainst()).toBe('fire')
+    });
+});
+describe('Normal class', () => {
+    test('Name should return charmander', () => {
+        const result = new Normal('Eevee',40);
+        expect(result.name).toBe('Eevee')
+    });
 });

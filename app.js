@@ -9,7 +9,7 @@ class Pokemon{
         this.health -= attackValue
     };
     useMove(){
-        console.log(`${this.name} used ${this.move}`)
+        // console.log(`${this.name} used ${this.move}`)
         return this.attackDamage
     };
     hasFainted(){
@@ -17,4 +17,44 @@ class Pokemon{
     }
 }
 
-module.exports = {Pokemon}
+class Fire extends Pokemon{
+    constructor(name, attackDamage){
+        super(name, attackDamage)
+        this.type = 'fire'
+    };
+    isEffectiveAgainst(name){
+        this.isStrongAgainst = 'grass'
+
+    }
+}
+class Grass extends Pokemon{
+    constructor(name, attackDamage){
+        super(name, attackDamage)
+        this.type = 'grass'
+    };
+    isEffectiveAgainst(name){
+        this.isStrongAgainst = 'water'
+
+    }
+}
+class Water extends Pokemon{
+    constructor(name, attackDamage){
+        super(name, attackDamage)
+        this.type = 'water'
+    };
+    isEffectiveAgainst(name){
+        this.isStrongAgainst = 'fire'
+
+    }
+}
+class Normal extends Pokemon{
+    constructor(name, attackDamage){
+        super(name, attackDamage)
+        this.type = 'normal'
+    };
+    isEffectiveAgainst(name){
+
+    }
+}
+
+module.exports = {Pokemon,Fire,Grass,Water,Normal}
