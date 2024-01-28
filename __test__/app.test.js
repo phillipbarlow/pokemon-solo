@@ -45,10 +45,17 @@ describe('Fire class', () => {
         const result = new Fire('charmander',40);
         expect(result.name).toBe('charmander')
     });
-    test('isStrongAgainst should return grass', () => {
-        const result = new Fire('charmander',40);;
-        expect(result.isEffectiveAgainst()).toBe('grass')
-        console.log(result)
+    test('isStrongAgainst should return true for grass', () => {
+        const result = new Fire('charmander',40);
+        const isGrass = result.isEffectiveAgainst('grass')
+        const isFire = result.isEffectiveAgainst('fire')
+        expect(isGrass).toBe(true)
+        expect(isFire).toBe(false)
+    });
+    test('isWeakAgainst should return true for water', () => {
+        const result = new Fire('charmander',40);
+        const isWater = result.isWeakAgainst('water')
+        expect(isWater).toBe(true)
     });
 });
 describe('Grass class', () => {
@@ -56,9 +63,17 @@ describe('Grass class', () => {
         const result = new Grass('bulbasaur',40);
         expect(result.name).toBe('bulbasaur')
     });
-    test('isStrongAgainst should return water', () => {
-        const result = new Grass('bulbasaur',40);;
-        expect(result.isEffectiveAgainst()).toBe('water')
+    test('isStrongAgainst should return true for water', () => {
+        const result = new Grass('bulbasaur',40);
+        const isWater = result.isEffectiveAgainst('water')
+        const isNormal = result.isEffectiveAgainst('normal')
+        expect(isWater).toBe(true)
+        expect(isNormal).toBe(false)
+    });
+    test('isWeakAgainst should return true for fire', () => {
+        const result = new Grass('bulbasaur',40);
+        const isFire = result.isWeakAgainst('fire')
+        expect(isFire).toBe(true)
     });
 });
 describe('Water class', () => {
@@ -66,14 +81,34 @@ describe('Water class', () => {
         const result = new Water('squirtle',40);
         expect(result.name).toBe('squirtle');
     });
-    test('isStrongAgainst should return fire', () => {
+    test('isStrongAgainst should return true for fire', () => {
         const result = new Water('squirtle',40);
-        expect(result.isEffectiveAgainst()).toBe('fire')
+        const isGrass = result.isEffectiveAgainst('fire')
+        const isWater = result.isEffectiveAgainst('water')
+        expect(isGrass).toBe(true)
+        expect(isWater).toBe(false)
+    });
+    test('isWeakAgainst should return true for grass', () => {
+        const result = new Water('squirtle',40);
+        const isGrass = result.isWeakAgainst('grass')
+        expect(isGrass).toBe(true)
     });
 });
 describe('Normal class', () => {
     test('Name should return charmander', () => {
         const result = new Normal('Eevee',40);
         expect(result.name).toBe('Eevee')
+    });
+    test('isStrongAgainst should return false for fire and water', () => {
+        const result = new Normal('Eevee', 30);
+        const isFire = result.isEffectiveAgainst('fire');
+        const isWater = result.isEffectiveAgainst('water')
+        expect(isFire).toBe(false)
+        expect(isWater).toBe(false)
+    });
+    test('isWeakAgainst should return false for water', () => {
+        const result = new Normal('Eevee',40);
+        const isWater = result.isWeakAgainst('water')
+        expect(isWater).toBe(false)
     });
 });
